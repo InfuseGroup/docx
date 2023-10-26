@@ -202,8 +202,6 @@ describe Docx::Document do
     end
 
     it 'should allow text run color changes' do
-      puts 'Should show already'
-      puts(@doc.paragraphs[0].text_runs[0].color)
       expect { @doc.paragraphs[0].text_runs[0].color = 'FF0000' }.to change {
                                                                        @doc.paragraphs[0].text_runs[0].color
                                                                      }
