@@ -46,12 +46,12 @@ module Docx
           @text_nodes.each do |text_node|
             color_tag = text_node.node.xpath('w:rPr//w:color').first
 
-            unless color_tag
+            if color_tag
+              color_tag.attributes['val'].value = hex
+            else
               properties_tag = text_node.node.xpath('w:rPr').first || text_node.node.add_child('<w:rPr></w:rPr>').first
-              color_tag = properties_tag.add_child('<w:color></w:color>').first
+              properties_tag.add_child("<w:color val=\"#{hex}\" />").first
             end
-
-            color_tag['val'] = hex
           end
         end
 
