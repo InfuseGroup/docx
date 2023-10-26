@@ -44,9 +44,9 @@ module Docx
         # Set color of text run
         def color=(hex)
           @node.xpath('w:rPr//w:color').remove
-          (@node.xpath('w:Pr').first || @node.add_child('<w:rPr/>'))
+          (@node.xpath('w:rPr').first || @node.add_child('<w:rPr/>'))
             .first
-            .add_child("<w:color w:val=\"#{hex}\" w:themeColor=\"accent-#{hex}\"/>")
+            .add_child("<w:color w:val=\"#{hex}\" w:themeColor=\"accent-#{hex}\" />")
         end
 
         def color
