@@ -43,16 +43,8 @@ module Docx
 
         # Set color of text run
         def color=(hex)
-          @text_nodes.each do |text_node|
-            color_tag = text_node.node.xpath('w:rPr//w:color').first
-
-            if color_tag
-              color_tag.attributes['val'].value = hex
-            else
-              properties_tag = text_node.node.xpath('w:rPr').first || text_node.node.add_child('<w:rPr></w:rPr>').first
-              properties_tag.add_child("<w:color val=\"#{hex}\" />").first
-            end
-          end
+          @node.xpath('w:rPr//w:color').remove
+          @node.xpath('w:Pr').first.add_child("<w:color w:val=\"#{hex}\" />").first
         end
 
         def color
