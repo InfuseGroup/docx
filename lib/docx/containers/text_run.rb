@@ -45,7 +45,7 @@ module Docx
         def color=(hex)
           @node.xpath('w:rPr//w:color').remove
           (@node.xpath('w:rPr').first || @node.add_child('<w:rPr />').first)
-            .prepend_child("<w:color w:val=\"#{hex}\" w:themeColor=\"accent-#{hex}\" />")
+            .prepend_child("<w:color w:val=\"#{hex}\" w:themeColor=\"accent-#{hex}\"/>")
         end
 
         def color
